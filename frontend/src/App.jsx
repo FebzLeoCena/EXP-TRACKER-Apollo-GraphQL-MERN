@@ -5,9 +5,13 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import TransactionPage from "./pages/TransactionPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { useQuery } from "@apollo/client";
+import { GET_AUTHENTICATED_USER } from "./graphql/queries/transaction.query";
 
 function App() {
-  const authUser = false;
+  const authUser = true;
+  const { loading, data, error } = useQuery(GET_AUTHENTICATED_USER);
+  console.log(data);
   return (
     <>
       {authUser && <Header />}

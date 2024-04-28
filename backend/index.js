@@ -16,7 +16,7 @@ import { connectDB } from "./db/connectDB.js";
 import { buildContext } from "graphql-passport";
 import { configurePassport } from "./passport/passport.config.js";
 
-import job from "./cron.js";
+// import job from "./cron.js";
 
 dotenv.config();
 configurePassport();
@@ -56,6 +56,9 @@ const server = new ApolloServer({
   typeDefs: mergedTypeDefs,
   resolvers: mergedResolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  onError: (err) => {
+    console.error("🛑Apollo Server error🛑:", err);
+  },
 });
 // Ensure we wait for our server to start
 await server.start();
@@ -63,7 +66,7 @@ await server.start();
 // Set up our Express middleware to handle CORS, body parsing,
 // and our expressMiddleware function.
 app.use(
-  "/",
+  "/graphql",
   cors({
     origin: ["http://localhost:3000"],
     credentials: true,
@@ -77,5 +80,5 @@ app.use(
 );
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-console.log(`🚀 Server ready at: http://localhost:4000`);
+console.log(`🚀 Server ready at: http://localhost:4000/graphql`);
 await connectDB();
