@@ -39,6 +39,12 @@ npm install graphql @apollo/client react-router-dom react-icons react-hot-toast 
 
 -`GraphQL Schema`: the structure of the data that clients can query.consists of 2 main parts- typeDefs & resolvers -`typeDefs`: define the shape of the data available in the GraphQL API -`resolvers`: functions that determine how to fetch the data
 
+```bash
+npm create vite@latest
+```
+
+`Install Tailwind css packages`
+
 # Main.jsx
 
 ```jsx
