@@ -1,7 +1,4 @@
-// import { gql } from "graphql-tag";
-// transactions: [Transaction!]
-const userTypeDef = `
-  #graphql
+const userTypeDef = `#graphql
   type User {
     _id: ID!
     username: String!
@@ -9,12 +6,12 @@ const userTypeDef = `
     password: String!
     profilePicture: String
     gender: String!
-   
+    transactions: [Transaction!]
   }
 
   type Query {
     authUser: User
-    user(userId: ID!): User
+    user(userId:ID!): User
   }
 
   type Mutation {

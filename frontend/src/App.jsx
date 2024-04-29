@@ -6,7 +6,7 @@ import SignUpPage from "./pages/SignUpPage";
 import TransactionPage from "./pages/TransactionPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { useQuery } from "@apollo/client";
-import { GET_AUTHENTICATED_USER } from "./graphql/queries/transaction.query";
+import { GET_AUTHENTICATED_USER } from "./graphql/queries/user.query.js";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           element={!data.authUser ? <SignUpPage /> : <Navigate to="/" />}
         />
         <Route
-          path="/transaction/:id"
+          path="/transaction/:idVal"
           element={
             data.authUser ? <TransactionPage /> : <Navigate to="/login" />
           }

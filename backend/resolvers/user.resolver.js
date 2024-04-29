@@ -33,7 +33,6 @@ const userResolver = {
 
         await newUser.save();
         await context.login(newUser);
-        console.log("Check123login", await context.getUser());
         return newUser;
       } catch (err) {
         console.error("Error in signUp: ", err);
@@ -92,17 +91,17 @@ const userResolver = {
       }
     },
   },
-  // User: {
-  //   transactions: async (parent) => {
-  //     try {
-  //       const transactions = await Transaction.find({ userId: parent._id });
-  //       return transactions;
-  //     } catch (err) {
-  //       console.log("Error in user.transactions resolver: ", err);
-  //       throw new Error(err.message || "Internal server error");
-  //     }
-  //   },
-  // },
+  User: {
+    transactions: async (parent) => {
+      try {
+        const transactions = await Transaction.find({ userId: parent._id });
+        return transactions;
+      } catch (err) {
+        console.log("Error in user.transactions resolver: ", err);
+        throw new Error(err.message || "Internal server error");
+      }
+    },
+  },
 };
 
 export default userResolver;
