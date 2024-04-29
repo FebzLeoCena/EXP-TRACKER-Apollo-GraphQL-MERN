@@ -33,6 +33,7 @@ const userResolver = {
 
         await newUser.save();
         await context.login(newUser);
+        console.log("Check123login", await context.getUser());
         return newUser;
       } catch (err) {
         console.error("Error in signUp: ", err);

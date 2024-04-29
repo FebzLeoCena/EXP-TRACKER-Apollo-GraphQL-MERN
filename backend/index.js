@@ -32,12 +32,13 @@ const store = new MongoDBStore({
 
 store.on("error", (err) => console.log(err));
 app.use(
+  //configure Express to use sessions with express-session. Sessions are used to persist user authentication state across requests.
   session({
     secret: process.env.SESSION_SECRET,
     resave: false, // this option specifies whether to save the session to the store on every request
     saveUninitialized: false, // option specifies whether to save uninitialized sessions
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true, // this option prevents the Cross-Site Scripting (XSS) attacks
     },
     store: store,
@@ -45,6 +46,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+//You initialize Passport and set up Passport session middleware to work with Express sessions.
 const httpServer = http.createServer(app);
 // const server = new ApolloServer({
 //   typeDefs: mergedTypeDefs,
