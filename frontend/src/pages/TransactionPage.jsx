@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkeleton";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   GET_TRANSACTION,
   GET_TRANSACTION_STATISTICS,
@@ -39,11 +39,17 @@ const TransactionPage = () => {
   const [updateTransaction, { loading: loadingUpdate }] = useMutation(
     UPDATE_TRANSACTION,
     {
-      // https://github.com/apollographql/apollo-client/issues/5419 => refetchQueries is not working, and here is how we fixed it
-      refetchQueries: [{ query: GET_TRANSACTION_STATISTICS }],
+      // https://github.com/apollographql/apollo-client/issues/5419 => refetchQueries is not working, and here is how fixed it
+      refetchQueries: ["GetTransactionStatistics"],
     }
   );
-
+  // const [updateTransaction, { loading: loadingUpdate }] = useMutation(
+  //   UPDATE_TRANSACTION,
+  //   {
+  //     // https://github.com/apollographql/apollo-client/issues/5419 => refetchQueries is not working, and here is how fixed it
+  //     refetchQueries: [{ query: GET_TRANSACTION_STATISTICS }],
+  //   }
+  // );
   const handleSubmit = async (e) => {
     e.preventDefault();
     const amount = parseFloat(formData.amount); // convert amount to number bc by default it is string

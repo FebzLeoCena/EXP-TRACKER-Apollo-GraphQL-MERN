@@ -97,6 +97,7 @@ const transactionResolver = {
     },
   },
   Transaction: {
+    //parent is Transaction here
     user: async (parent) => {
       const userId = parent.userId;
       try {

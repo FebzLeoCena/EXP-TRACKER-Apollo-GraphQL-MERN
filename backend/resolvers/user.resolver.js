@@ -94,6 +94,7 @@ const userResolver = {
   User: {
     transactions: async (parent) => {
       try {
+        //userId-from transaction model
         const transactions = await Transaction.find({ userId: parent._id });
         return transactions;
       } catch (err) {
